@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import background from "../assests/images/back.webp"
+
 const FormPage = () => {
     const navigate = useNavigate();
     const [allCurrentData, setAllCurrentData] = useState({
@@ -56,24 +58,33 @@ const FormPage = () => {
     }
     return (
         <>
-            <input type="text" id="fname" placeholder="Joe" onChange={inputChange} value={allCurrentData.fname}></input>
-            <input type="text" id="lname" placeholder="Doe" onChange={inputChange} value={allCurrentData.lname}></input>
-            <input type="email" id="email" placeholder="joeDoe@gmail.com" onChange={inputChange} value={allCurrentData.email}></input>
-            <input type="date" id="dob" onChange={inputChange} value={allCurrentData.dob}></input>
-            <div>
-                <p>Your age is {moment().diff(allCurrentData.dob, 'years', true).toFixed()}</p>
+            <div class="grandParent">
+                <div class="parent">
+                    <div class="child1">
+                        <img src={background} className="bg-img"></img>
+                    </div>
+                    <div class="child2">
+                        <input type="text" id="fname" placeholder="Joe" onChange={inputChange} value={allCurrentData.fname}></input>
+                        <input type="text" id="lname" placeholder="Doe" onChange={inputChange} value={allCurrentData.lname}></input>
+                        <input type="email" id="email" placeholder="joeDoe@gmail.com" onChange={inputChange} value={allCurrentData.email}></input>
+                        <input type="date" id="dob" onChange={inputChange} value={allCurrentData.dob}></input>
+                        <div>
+                            <p>Your age is {moment().diff(allCurrentData.dob, 'years', true).toFixed()}</p>
+                        </div>
+                        <div>
+                            {allCurrentData.slots.map((v, i) => {
+                                return <button id="select_slot" key={v} value={v} onClick={inputChange}>{v}</button>
+                            })}
+                            <p>Selected slot is {allCurrentData.select_slot}</p>
+                        </div>
+                        <div>
+                            <p>Enrollment Day {moment(allCurrentData.enroll_date).format('DD-MM-YYYY')}</p>
+                            <input type="date" id="enroll_date" onChange={inputChange} value={allCurrentData.enroll_date} min={moment().format("YYYY-MM-DD")}></input>
+                        </div>
+                        <button onClick={submitForm}>Submit</button>
+                    </div>
+                </div>
             </div>
-            <div>
-                {allCurrentData.slots.map((v, i) => {
-                    return <button id="select_slot" key={v} value={v} onClick={inputChange}>{v}</button>
-                })}
-                <p>Selected slot is {allCurrentData.select_slot}</p>
-            </div>
-            <div>
-                <p>Enrollment Day {moment(allCurrentData.enroll_date).format('DD-MM-YYYY')}</p>
-                <input type="date" id="enroll_date" onChange={inputChange} value={allCurrentData.enroll_date} min={moment().format("YYYY-MM-DD")}></input>
-            </div>
-            <button onClick={submitForm}>Submit</button>
         </>
     );
 }
