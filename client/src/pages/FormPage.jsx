@@ -23,11 +23,23 @@ const FormPage = () => {
         })
     }
     function invalid() {
-        return false;
+        const { fname, lname, email, select_slot, dob, enroll_date } = allCurrentData;
+        if (!fname || !lname || !email || !select_slot)
+            return 1;
+        let age_ceil = Math.ceil(moment().diff(dob, 'years', true));
+        let age_floor = Math.floor(moment().diff(dob, 'years', true));
+        if (age_floor < 18 && age_ceil > 65)
+            return 1;
+        let enroll_date_is_past = Math.floor(moment().diff(enroll_date, 'days', true));
+        if (enroll_date_is_past > 0)
+            return 1;
     }
     function submitForm(e) {
         e.preventDefault();
-        if (invalid()) { }
+        if (invalid()) {
+            alert("invalid input");
+            return 0;
+        }
         const url = "http://localhost:5000/api/form/submit";
         axios.post(url, allCurrentData)
             .then((res) => {
