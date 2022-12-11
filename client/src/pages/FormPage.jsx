@@ -35,6 +35,10 @@ const FormPage = () => {
                 navigate('/preview')
             })
             .catch((err) => {
+                if (err.response.status == 303) {
+                    localStorage.setItem('user', JSON.stringify(err.response.data));
+                    navigate('/preview')
+                }
                 console.log(err);
             })
     }
