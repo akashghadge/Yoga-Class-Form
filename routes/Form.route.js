@@ -6,7 +6,7 @@ const Customer = require("../models/Customers.schema");
 router.post("/submit", async (req, res) => {
     const { fname, email, lname, dob, select_slot, enroll_date } = req.body;
     try {
-        let alreadyUserExists = await Customer.find({ email: email, month: moment(enroll_date).month() })
+        let alreadyUserExists = await Customer.find({ email: email, month: moment(enroll_date).month(), year: moment(enroll_date).year() })
         // find is there any prev user exists
         // if exists find is user come for same month then redirect  it to preview page without adding the data
         if (alreadyUserExists.length != 0) {

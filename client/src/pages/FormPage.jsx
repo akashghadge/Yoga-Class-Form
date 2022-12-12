@@ -2,9 +2,33 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import background from "../assests/images/back.webp"
+import { toast } from 'react-toastify'
 
 const FormPage = () => {
+    const WarningAlert = (text) => {
+        toast.warn(text, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+    const SuccessAlert = (text) => {
+        toast.success(text, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
     const navigate = useNavigate();
     const [allCurrentData, setAllCurrentData] = useState({
         fname: "",
@@ -30,18 +54,18 @@ const FormPage = () => {
     function invalid() {
         const { fname, lname, email, select_slot, dob, enroll_date } = allCurrentData;
         if (!fname || !lname || !email || !select_slot) {
-            alert('Input Field is Empty')
+            WarningAlert('Input Field is Empty')
             return 1;
         }
         let age_ceil = Math.ceil(moment().diff(dob, 'years', true));
         let age_floor = Math.floor(moment().diff(dob, 'years', true));
-        if (age_floor < 18 && age_ceil > 65) {
-            alert("Your age is not between 18-65");
+        if (age_floor < 18 || age_ceil > 65) {
+            WarningAlert("Your age is not between 18-65");
             return 1;
         }
         let enroll_date_is_past = Math.floor(moment().diff(enroll_date, 'days', true));
         if (enroll_date_is_past > 0) {
-            alert("Enrollment Date should be in future or today");
+            WarningAlert("Enrollment Date should be in future or today");
             return 1;
         }
     }
@@ -54,14 +78,19 @@ const FormPage = () => {
         axios.post(url, allCurrentData)
             .then((res) => {
                 localStorage.setItem('user', JSON.stringify(res.data));
+                SuccessAlert("Form Filled Successfully")
                 navigate('/preview')
             })
             .catch((err) => {
+                if (err.response.status == 400) {
+                    WarningAlert("Your already filled form and payed fees as well")
+                }
                 if (err.response.status == 303) {
                     localStorage.setItem('user', JSON.stringify(err.response.data));
+                    WarningAlert("You Already Filled form for this Month")
                     navigate('/preview')
                 }
-                alert(err)
+                WarningAlert(err)
             })
     }
     return (

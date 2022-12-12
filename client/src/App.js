@@ -6,6 +6,10 @@ import Preview from "./pages/Preview"
 import Success from "./pages/Success"
 import background from "./assests/images/back.webp"
 import ErrorPage from "./pages/ErrorPage"
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   return (
     <>
@@ -25,6 +29,8 @@ function App() {
           </div>
         </div>
       </div>
+      <ToastContainer />
+
     </>
   );
 }

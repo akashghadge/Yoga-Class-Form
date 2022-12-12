@@ -24,6 +24,7 @@ const CustomerSchema = new Schema
         dob: { type: Date, default: Date.now },
         enroll_date: { type: Date, default: Date.now },
         month: { type: Number, default: -1 },
+        year: { type: Number, default: -1 },
         fees_paid: { type: Boolean, default: false },
         select_slot: { type: String, required: [true, 'please enter slot'] },
         createdAt: { type: Date, default: Date.now }
@@ -39,6 +40,7 @@ const CustomerSchema = new Schema
         });
 CustomerSchema.pre('save', function (next) {
     this.month = moment(this.enroll_date).month();
+    this.year = moment(this.enroll_date).year();
     next();
 })
 const Customer = mongoose.model("Customer", CustomerSchema);

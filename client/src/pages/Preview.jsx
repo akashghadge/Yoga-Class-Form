@@ -2,7 +2,45 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import moment from 'moment';
 import axios from 'axios'
+import { toast } from 'react-toastify'
+
 const Preview = () => {
+    const WarningAlert = (text) => {
+        toast.warn(text, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+    const ErrorAlert = (text) => {
+        toast.error(text, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+    const SuccessAlert = (text) => {
+        toast.success(text, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
     const navigate = useNavigate();
     let [userData, setUserData] = useState({
         _id: "",
@@ -25,11 +63,11 @@ const Preview = () => {
         axios.post(url, userData)
             .then((data) => {
                 navigate('/success');
+                SuccessAlert("User Registration Completed")
                 localStorage.setItem('user', null)
             })
             .catch((err) => {
-                // pop up for failed payment
-                alert(err);
+                ErrorAlert("Payment Failed");
             })
     }
     return (

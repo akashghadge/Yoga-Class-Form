@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 const Home = () => {
     const navigate = useNavigate();
     function handleClick() {
         navigate('/form')
+        toast("Let's Start the Journey");
     }
     return (
         <>
