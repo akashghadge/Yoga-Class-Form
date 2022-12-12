@@ -24,7 +24,7 @@ const Payment = require("./routes/Payment.routes");
 const FromValidation = require("./middlewares/FormValidation");
 // routes setting
 app.use('/api/form', FromValidation, Form);
-app.use('/api/forms/get', getForms)
+app.use('/api/get', getForms)
 app.use('/api/payment', Payment);
 
 // for production use

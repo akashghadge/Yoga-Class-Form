@@ -89,3 +89,12 @@
   /* text-decoration: underline;
   text-underline-offset: 10px; */
 }
+
+.text-small{
+  font-size: 0.8rem;
+}
+.table{
+  display: block !important;
+  overflow-x: auto !important;
+  width: 100% !important;
+}

@@ -11,6 +11,9 @@ const Home = () => {
         <>
             <div className="d-flex justify-content-center">
                 <button className='btn-custom' onClick={handleClick}>Fill Form</button>
+                <button className='btn-custom mx-4' onClick={() => {
+                    navigate('/list')
+                }}>User List</button>
             </div>
         </>
     );

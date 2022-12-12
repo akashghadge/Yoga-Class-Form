@@ -6,7 +6,7 @@ import Preview from "./pages/Preview"
 import Success from "./pages/Success"
 import background from "./assests/images/back.webp"
 import ErrorPage from "./pages/ErrorPage"
-
+import UserList from './pages/UserList';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,6 +24,7 @@ function App() {
               <Route exact path="/form" element={<FormPage />}></Route>
               <Route exact path="/preview" element={<Preview />}></Route>
               <Route exact path="/success" element={<Success />}></Route>
+              <Route exact path="/list" element={<UserList />}></Route>
               <Route path="*" element={<ErrorPage />}></Route>
             </Routes>
           </div>
