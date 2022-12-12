@@ -3,6 +3,7 @@ import moment from 'moment';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import urls from '../api/urls';
 
 const FormPage = () => {
     const WarningAlert = (text) => {
@@ -74,7 +75,7 @@ const FormPage = () => {
         if (invalid()) {
             return 0;
         }
-        const url = "http://localhost:5000/api/form/submit";
+        const url = `${urls.base}/api/form/submit`;
         axios.post(url, allCurrentData)
             .then((res) => {
                 localStorage.setItem('user', JSON.stringify(res.data));

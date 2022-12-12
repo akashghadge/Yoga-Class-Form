@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import { toast } from "react-toastify"
 import moment from 'moment'
+import urls from '../api/urls';
+
 const UserList = () => {
     let [userForms, setUserForms] = useState([]);
     const ErrorAlert = (text) => {
@@ -17,7 +19,7 @@ const UserList = () => {
         });
     }
     useEffect(() => {
-        const url = "http://localhost:5000/api/get/all";
+        const url = `${urls.base}/api/get/all`;
         axios.get(url)
             .then((result) => {
                 setUserForms(result.data);

@@ -28,11 +28,11 @@ app.use('/api/get', getForms)
 app.use('/api/payment', Payment);
 
 // for production use
-// app.use(express.static("client/dist"));
-// const path = require("path");
-// app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
-// })
+app.use(express.static("client/build"));
+const path = require("path");
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
+})
 
 app.listen(port, () => {
     console.log("Server is listening on port ", port);

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import moment from 'moment';
 import axios from 'axios'
 import { toast } from 'react-toastify'
-
+import urls from '../api/urls';
 const Preview = () => {
     const WarningAlert = (text) => {
         toast.warn(text, {
@@ -59,7 +59,7 @@ const Preview = () => {
     }, []);
     function payFees(e) {
         e.preventDefault();
-        const url = "http://localhost:5000/api/payment/pay";
+        const url = `${urls.base}/api/payment/pay`;
         axios.post(url, userData)
             .then((data) => {
                 navigate('/success');
