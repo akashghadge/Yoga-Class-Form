@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .grandParent {
@@ -13,9 +14,9 @@
   display: flex;
   height: auto;
   justify-content: space-around;
+  align-items: center;
   flex-wrap: wrap;
   margin: 10px;
-  align-items: center;
 }
 .child1{
   display: flex;
@@ -24,7 +25,6 @@
 }
 .child1,
 .child2 {
-  text-align: center;
   flex: 1 1 200px;
 }
 
@@ -33,7 +33,7 @@
   width: 50vw;
 }
 
-.btn{
+.btn-custom{
   color: orange;
   background-color: white;
   border: solid orange 1px;
@@ -42,14 +42,23 @@
   cursor: pointer;
 }
 
-.btn:hover{
+.btn-custom:hover{
   color: white;
   background-color: orange;
   animation-name: btn-animation;
   transition: ease-in-out;
   animation-duration: 1s;
 }
-
+.btn-custom-orange{
+  color: white !important;
+  background-color: orange !important;
+  outline: none !important;
+}
+.btn-custom-border-orange
+{
+  color: orange !important;
+  border: solid orange 2px !important;
+}
 @keyframes btn-animation{
   0%{
     transform: scale(1);
@@ -57,4 +66,26 @@
   100%{
     transform: scale(1.2);
   }
+}
+
+.d-hide{
+  visibility: hidden;
+}
+
+.text-orange{
+  color: orange;
+}
+
+.preview-div{
+  border: solid 2px orange;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.text-preview{
+  text-transform: capitalize;
+  color: orangered;
+  font-size: 1.1rem;
+  /* text-decoration: underline;
+  text-underline-offset: 10px; */
 }

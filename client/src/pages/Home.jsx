@@ -1,5 +1,4 @@
 import React from 'react';
-import background from "../assests/images/back.webp"
 import { useNavigate } from 'react-router-dom'
 const Home = () => {
     const navigate = useNavigate();
@@ -8,15 +7,8 @@ const Home = () => {
     }
     return (
         <>
-            <div class="grandParent">
-                <div class="parent">
-                    <div class="child1">
-                        <img src={background} className="bg-img"></img>
-                    </div>
-                    <div class="child2">
-                        <button className='btn' onClick={handleClick}>Fill Form</button>
-                    </div>
-                </div>
+            <div className="d-flex justify-content-center">
+                <button className='btn-custom' onClick={handleClick}>Fill Form</button>
             </div>
         </>
     );
